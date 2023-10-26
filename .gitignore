@@ -1,3 +1,5 @@
 post-build.sh
 S00variables
+
+patches
 docker-compose.yml
