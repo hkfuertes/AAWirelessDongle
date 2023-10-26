@@ -1,5 +1,2 @@
-post-build.sh
-S00variables
-
 patches
-docker-compose.yml
+docker-compose.override.yml
