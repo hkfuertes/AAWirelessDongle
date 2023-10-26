@@ -3,9 +3,9 @@
 # Configure USB gadget interfaces
 #
 
-SERIAL_NUMBER="0"
-MANUFACTURER="My Own"
-PRODUCT="AA Wireless Dongle"
+SERIAL_NUMBER=${SERIAL_NUMBER:-"0"}
+MANUFACTURER=${MANUFACTURER:-"My Own"}
+PRODUCT=${PRODUCT:-"AA Wireless Dongle"}
 
 ACCESSORY_GADGET_NAME="accessory"
 DEFAULT_GADGET_NAME="default"

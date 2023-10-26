@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  build_rpi02w:
+    volumes:
+      - ./post-build.sh:/app/buildroot/board/raspberrypi/post-build.sh:ro
+      - ./S00variables:/app/aa_wireless_dongle/board/common/rootfs_overlay/etc/init.d/S00variables:ro
+
+  build_rpi3a:
+    volumes:
+      - ./S00variables:/app/aa_wireless_dongle/board/common/rootfs_overlay/etc/init.d/S00variables:ro
