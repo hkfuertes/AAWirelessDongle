@@ -1,4 +1,4 @@
-# AAWG
+# AAWirelessDongle
 
 Use Wireless Android Auto with a car that supports only wired Android Auto using a Raspberry Pi.
 
