@@ -77,7 +77,7 @@ void BluetoothHandler::initAdapter() {
     }
     else {
         m_adapter = BluezAdapterProxy::create(m_connection, adapter_path);
-        m_adapter->alias->set_value(getenv("AAWG_BT_ALIAS", ADAPTER_ALIAS));
+        m_adapter->alias->set_value(ADAPTER_ALIAS);
     }
 }
 
