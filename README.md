@@ -1,5 +1,9 @@
 # AAWirelessDongle
 
+Envvar in patch: https://stackoverflow.com/questions/36690407/how-to-get-linux-patch-util-to-use-env-var-in-patch-file#36705782
+
+
+
 Use Wireless Android Auto with a car that supports only wired Android Auto using a Raspberry Pi.
 
 This repository consists of the buildroot setup to generate an sd card image to create your own Wireless Android Auto Dongle.
