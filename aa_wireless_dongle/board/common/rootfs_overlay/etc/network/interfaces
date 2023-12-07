@@ -14,7 +14,7 @@ iface wlan0 inet static
   address 10.0.0.1
   netmask 255.255.255.0
   pre-up hostapd -B /etc/hostapd.conf -d -t -f /var/log/hostapd
-  post-up hostapd_cli -a '/etc/hostapd/listen.sh'
+  #post-up dnsmasq
   #pre-down killall -q dnsmasq
   post-down killall -q hostapd
 
