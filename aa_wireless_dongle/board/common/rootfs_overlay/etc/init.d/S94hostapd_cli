@@ -23,7 +23,7 @@ case "$1" in
 	start)
 		printf "Starting $DAEMON: "
 		create_script
-		start-stop-daemon -S -b -q -m -p "$PIDFILE" -x "/usr/bin/$DAEMON" -- -a /tmp/script.sh
+		start-stop-daemon -S -b -q -m -p "$PIDFILE" -x "/usr/bin/$DAEMON -a /tmp/script.sh"
 		RETVAL=$?
 		[ $RETVAL = 0 ] && echo "OK" || echo "FAIL"
 		;;
