@@ -10,12 +10,14 @@
 #include <atomic>
 #include <string>
 
+#include <csignal>
+
 #include "common.h"
 #include "proxyHandler.h"
 
-namespace {
-    std::atomic<bool> running(true);
-}
+// namespace {
+//     std::atomic<bool> running(true);
+// }
 
 ssize_t AAWProxy::readFully(int fd, unsigned char *buffer, size_t nbyte) {
     size_t remaining_bytes = nbyte;
@@ -90,11 +92,11 @@ void AAWProxy::forward(ProxyDirection direction, std::atomic<bool>& should_exit)
             break;
     }
 
-    std::signal(SIGTERM, [](int signum){
-        running.store(false);
-    });
+    // std::signal(SIGTERM, [](int signum){
+    //     running.store(false);
+    // });
 
-    while (!should_exit && running) {
+    while (!should_exit) {
         ssize_t len = read_message ? readMessage(read_fd, buffer, buffer_len) : read(read_fd, buffer, buffer_len);
         Logger::instance()->info("%d bytes read from %s\n", len, read_name.c_str());
         if (len < 0) {
@@ -114,7 +116,7 @@ void AAWProxy::forward(ProxyDirection direction, std::atomic<bool>& should_exit)
     }
 
     should_exit = true;
-    running.store(true);
+    // running.store(true);
 }
 
 void AAWProxy::handleClient(int server_sock) {
