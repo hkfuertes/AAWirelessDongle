@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# Start aawgd daemon
+#
+
+DAEMON="hostapd_cli"
+PIDFILE="/var/run/$DAEMON.pid"
+
+create_script(){
+cat <<'EOF' > /tmp/script.sh
+#!/bin/bash
+if [[ $2 == "AP-STA-DISCONNECTED" ]]
+then
+    /etc/init.d/s92usb_gadget restart
+fi
+EOF
+}
+
+
+RETVAL=0
+
+case "$1" in
+	start)
+		printf "Starting $DAEMON: "
+		create_script
+		start-stop-daemon -S -b -q -m -p "$PIDFILE" -x "/usr/bin/$DAEMON" -- -a /tmp/script.sh
+		RETVAL=$?
+		[ $RETVAL = 0 ] && echo "OK" || echo "FAIL"
+		;;
+	stop)
+		printf "Stopping $DAEMON: "
+		start-stop-daemon -K -q -p "$PIDFILE"
+		RETVAL=$?
+		[ $RETVAL = 0 ] && echo "OK" || echo "FAIL"
+		;;
+	restart)
+		$0 stop
+		$0 start
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		;;
+esac
+
+exit $RETVAL
