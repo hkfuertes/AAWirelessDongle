@@ -6,8 +6,10 @@
 DAEMON="hostapd_cli"
 PIDFILE="/var/run/$DAEMON.pid"
 
+SCRIPT="/tmp/script.sh"
+
 create_script(){
-cat <<'EOF' > /tmp/script.sh
+cat <<'EOF' > "$1"
 #!/bin/bash
 if [[ $2 == "AP-STA-DISCONNECTED" ]]
 then
@@ -22,8 +24,8 @@ RETVAL=0
 case "$1" in
 	start)
 		printf "Starting $DAEMON: "
-		create_script
-		start-stop-daemon -S -b -q -m -p "$PIDFILE" -x "/usr/bin/$DAEMON -a /tmp/script.sh"
+		create_script "$SCRIPT"
+		start-stop-daemon -S -b -q -m -p "$PIDFILE" -x "/usr/bin/$DAEMON -a $SCRIPT"
 		RETVAL=$?
 		[ $RETVAL = 0 ] && echo "OK" || echo "FAIL"
 		;;
