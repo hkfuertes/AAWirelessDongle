@@ -96,6 +96,7 @@ void AAWProxy::forward(ProxyDirection direction, std::atomic<bool>& should_exit)
     //     running.store(false);
     // });
 
+    // while (!should_exit && running) {
     while (!should_exit) {
         ssize_t len = read_message ? readMessage(read_fd, buffer, buffer_len) : read(read_fd, buffer, buffer_len);
         Logger::instance()->info("%d bytes read from %s\n", len, read_name.c_str());
