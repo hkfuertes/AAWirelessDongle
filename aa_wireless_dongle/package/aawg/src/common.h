@@ -29,6 +29,7 @@ public:
 
     WifiInfo getWifiInfo();
     ConnectionStrategy getConnectionStrategy();
+    std::string getBtAlias(bool isDongleMode);
 private:
     Config() = default;
 

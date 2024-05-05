@@ -39,8 +39,8 @@ std::string Config::getMacAddress(std::string interface) {
 
 WifiInfo Config::getWifiInfo() {
     return {
-        getenv("AAWG_WIFI_SSID", "AAWirelessDongle"),
-        getenv("AAWG_WIFI_PASSWORD", "ConnectAAWirelessDongle"),
+        getenv("AAWG_WIFI_SSID", "AndroidAuto"),
+        getenv("AAWG_WIFI_PASSWORD", "1234567890"),
         getenv("AAWG_WIFI_BSSID", getMacAddress("wlan0")),
         SecurityMode::WPA2_PERSONAL,
         AccessPointType::DYNAMIC,
@@ -67,6 +67,12 @@ ConnectionStrategy Config::getConnectionStrategy() {
     }
 
     return connectionStrategy.value();
+}
+
+std::string Config::getBtAlias(bool isDongleMode){
+    return isDongleMode 
+        ? "AndroidAuto-" + getenv("DONGLE_NUMBER", "0000") 
+        : getenv("ADAPTER_ALIAS", "AndroidAutoWireless");
 }
 #pragma endregion Config
 

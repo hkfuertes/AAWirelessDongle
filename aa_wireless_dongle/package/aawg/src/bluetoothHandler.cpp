@@ -5,9 +5,6 @@
 #include "bluetoothProfiles.h"
 #include "bluetoothAdvertisement.h"
 
-static constexpr const char* ADAPTER_ALIAS = "AA Wireless Dongle";
-static constexpr const char* ADAPTER_ALIAS_DONGLE = "AndroidAuto-Dongle";
-
 static constexpr const char* BLUEZ_BUS_NAME = "org.bluez";
 static constexpr const char* BLUEZ_ROOT_OBJECT_PATH = "/";
 static constexpr const char* BLUEZ_OBJECT_PATH = "/org/bluez";
@@ -248,7 +245,7 @@ void BluetoothHandler::init() {
     m_dispatcher = DBus::StandaloneDispatcher::create();
     m_connection = m_dispatcher->create_connection( DBus::BusType::SYSTEM );
 
-    m_adapterAlias = (Config::instance()->getConnectionStrategy() == ConnectionStrategy::DONGLE_MODE) ? ADAPTER_ALIAS_DONGLE : ADAPTER_ALIAS;
+    m_adapterAlias = Config::instance()->getBtAlias(Config::instance()->getConnectionStrategy() == ConnectionStrategy::DONGLE_MODE);
 
     initAdapter();
     exportProfiles();
