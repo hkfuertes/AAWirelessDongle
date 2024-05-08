@@ -6,8 +6,8 @@ services:
     image: aawg-buildroot
     volumes:
       - .:/app
-      - dl:/app/buildroot/dl
-      - output:/app/buildroot/output
+      # - dl:/app/buildroot/dl
+      # - output:/app/buildroot/output
     working_dir: /app/buildroot
     command: bash
   
@@ -40,6 +40,6 @@ services:
     environment:
       - BOARD_NAME=raspberrypicm4
 
-volumes:
-  dl:
-  output:
+# volumes:
+#   dl:
+#   output:
