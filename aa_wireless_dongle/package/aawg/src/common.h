@@ -30,6 +30,7 @@ public:
     WifiInfo getWifiInfo();
     ConnectionStrategy getConnectionStrategy();
     std::string getBtAlias(bool isDongleMode);
+    int32_t getUsbAccesoryTimeout();
 private:
     Config() = default;
 
